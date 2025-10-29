@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/svg-char-single/'
+  publicPath: '/svg-char-multi/'
 }
