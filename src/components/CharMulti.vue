@@ -28,10 +28,13 @@
 export default {
   props: {
     array: {
+      // Массив сегментов в формате: { count: 10, color: '#013A76' }
       type: Array,
       required: true
     },
-    sum: {
+    circleCount: {
+      // Значение (100% круга), процент от которого будут рассчитываться доли count сегментов от круга
+      // Если не будет указан, или будет некорректный, то будет использоваться сумма count всех сегментов
       type: Number,
       default: undefined
     },
@@ -56,12 +59,19 @@ export default {
       const circumference = 2 * Math.PI * this.circlesRadius
       let rotateDeg = -90
 
-      let circleValue = this.sum
+      // circleValue - значение (100% круга), процент от которого будут рассчитываться доли count сегментов от круга
+      let circleValue = this.circleCount
+      // countsSum - сумма count всех сегментов из array
       const countsSum = this.array.reduce((sum, item) => sum + +item.count, 0)
-      if (this.sum === undefined || countsSum > this.sum) {
+      if (this.circleCount === undefined || countsSum > this.circleCount) {
+        // Если circleCount не указан или
+        // если countsSum больше circleCount, то для того,
+        // чтобы все сегменты уместились и их размеры были относительно друг друга корректными,
+        // то в качестве circleValue будет countsSum
         circleValue = countsSum
       }
 
+      // Расчёт значений стилей svg-элементов сегментов
       let array = []
       for (let i = 0; i < this.array.length; i++) {
         const itemPercent = +this.array[i].count / circleValue

@@ -16,19 +16,12 @@
             </label>
           </td>
         </tr>
-        <!-- <tr>
-          <td>
-          </td>
-          <td>
-           
-          </td>
-        </tr> -->
         <tr>
           <td>
-            <label for="sum">sum:</label>
+            <label for="circleCount">circleCount:</label>
           </td>
           <td>
-            <input v-model="sum" id="sum" type="number" min="0" />
+            <input v-model="circleCount" id="circleCount" type="number" min="0" />
           </td>
         </tr>
       </tbody>
@@ -54,7 +47,7 @@
       +
     </button>
 
-    <CharMulti :array="segments" :sum="+sum" :sideLength="sideLength" :strokeWidth="strokeWidth" />
+    <CharMulti :array="segments" :circleCount="+circleCount" :sideLength="sideLength" :strokeWidth="strokeWidth" />
   </div>
 </template>
 
@@ -66,7 +59,7 @@ export default {
   components: { CharMulti },
 
   data: () => ({
-    sum: 100,
+    circleCount: 100,
     segments: [
       { count: 10, color: '#013A76' },
       { count: 20, color: '#FFCC00' },
